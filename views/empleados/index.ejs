@@ -1,0 +1,50 @@
+<%- include ../layouts/cabecera.ejs %>
+        <br>
+
+        <a href="/empleados/crear" class="btn btn-primary" type="button">Cargar nuevo empleado</a>
+
+        <br>
+        <br>
+
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>Legajo</th>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Sector</th>
+                    <th>Fecha ingreso</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <% for( let empleado = 0; empleado < empleados.length; empleado++ ) { %>
+                    <tr>
+                        <td> <%=empleados[empleado].legajo %> </td>
+                        <td> <%=empleados[empleado].apellido %> </td>
+                        <td> <%=empleados[empleado].nombre %> </td>
+                        <td> <%=empleados[empleado].dni %> </td>
+                        <td> <%=empleados[empleado].sector %> </td>
+                        <td> <%=empleados[empleado].fechaIngreso %> </td>
+                        <td> <%=empleados[empleado].activo %> </td>
+                        <td>
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                <form class="form-inline" method="post" action="/empleados/editar/<%=empleados[empleado].legajo %>">
+                                    <button class="btn btn-warning" type="submit">Editar</button>
+                                </form>
+                            </div> 
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                <form class="form-inline" method="post" action="/empleados/eliminar/<%=empleados[empleado].legajo %>">
+                                    <button class="btn btn-danger" type="submit">Borrar</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
+    
+            </tbody>
+        </table>
+<%- include ../layouts/pie.ejs %>
